@@ -1,10 +1,10 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio')
 
-const url = "https://nanime.in/?s="
-const hostUrl = "https://nanime.in/"
-const episodeUrl = "https://nanime.in/episode/"
-const pageUrl = "https://nanime.in/"
+const url = "https://nanime.yt/?s="
+const hostUrl = "https://nanime.yt/"
+const episodeUrl = "https://nanime.yt/episode/"
+const pageUrl = "https://nanime.yt/"
 
 const searchCache = {}
 const animeCache = {}
