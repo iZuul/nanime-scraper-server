@@ -3,6 +3,7 @@ const cheerio = require('cheerio')
 
 const url = "https://nanime.yt/?s="
 const hostUrl = "https://nanime.yt/"
+const genreUrl = "https://nanime.yt/genre/"
 const episodeUrl = "https://nanime.yt/episode/"
 const pageUrl = "https://nanime.yt/"
 
@@ -249,9 +250,39 @@ function searchPage(anime_name, number){
     })
 }
 
+function getGenres(){
+    return fetch(`${pageUrl}`)
+        .then(res => res.text())
+        .then(body => {
+            const genres = []
+            const updateAnimes = []
+
+            const $ = cheerio.load(body)
+            $('#list-genre .box-body a').each((i, element) => {
+                const elem = $(element)
+                const genre_name = elem.text()
+                const genre_link_path = new URL(elem.attr('href'))
+                const genre_link = genre_link_path.pathname.split('/')[2]
+
+                const genre = {
+                    genre_name: genre_name,
+                    genre_link: genreUrl + genre_link
+                }
+
+                genres.push(genre)
+            })
+            
+            return {
+                message: 'list genre',
+                genres
+            }
+        })
+}
+
 module.exports = {
     searchAnime,
     getAnime,
     getEpisode,
-    searchPage
+    searchPage,
+    getGenres
 }
