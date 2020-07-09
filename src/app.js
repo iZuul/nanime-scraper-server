@@ -6,7 +6,7 @@ const not_found = require('./middlewares')
 
 const app = express()
 
-const whitelist = [process.env.SERVER_URL, process.env.WEB_URL, process.env.SERVER_DEV, process.env.WEB_DEV]
+const whitelist = [process.env.SERVER_URL, process.env.WEB_URL, process.env.SERVER_DEV, process.env.WEB_DEV, 'https://nanime-scraper.netlify.app/']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
