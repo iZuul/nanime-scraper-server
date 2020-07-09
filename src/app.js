@@ -18,7 +18,7 @@ const corsOptions = {
   }
 }
 
-app.use(cors(corsOptions))
+app.use(cors())
 
 app.use(function (req, res, next) {
   res.removeHeader("X-Powered-By");
